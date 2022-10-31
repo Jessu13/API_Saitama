@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
-export const Fan = db.define('fan', {
-        nombre: {
+export const Fans = db.define('fans', {
+        nombre_fan: {
             type: Sequelize.STRING
         }
     }

@@ -1,14 +1,11 @@
 import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
-export const celula = db.define('', {
-        mutacion: {
+export const Partidas = db.define('partidas', {
+        gana: {
             type: Sequelize.STRING
         },
-        habilidad: {
-            type: Sequelize.STRING
-        },
-        id_monstruo: {
+        videojuego: {
             type: Sequelize.STRING
         }
     }

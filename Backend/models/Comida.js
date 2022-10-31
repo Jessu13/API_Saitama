@@ -2,13 +2,13 @@ import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
 export const Comida = db.define('comida', {
-        nombre: {
+        nombre_comida: {
             type: Sequelize.STRING
         },
         precio: {
             type: Sequelize.INTEGER
         },
-        Dia: {
+        dia: {
             type: Sequelize.DATE
         }
     }
