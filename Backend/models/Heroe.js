@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
-export const Heroe = db.define('heroe', {
+export const Heroe = db.define('heroes', {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,

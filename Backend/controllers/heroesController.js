@@ -1,6 +1,5 @@
-import { where } from "sequelize";
 import db from "../configuracion/db.js";
-import { Heroe } from "../models/heroes.js";
+import { Heroe } from "../models/Heroe.js";
 
 //GET
 const encontrar_Heroes = async (req, res) => {
@@ -25,7 +24,7 @@ const encontrar_Heroes = async (req, res) => {
                 rango: "C"
             }
         });
-        heroes = {heroes_claseS, heroes_claseA, heroes_claseB, heroes_claseC}
+        const heroes = {heroes_claseS, heroes_claseA, heroes_claseB, heroes_claseC}
         res.json(heroes)
     } catch (error) {
         return res.status(500).json({message: error.message});
@@ -41,3 +40,5 @@ const top10Heroes = async (req, res) => {
         return res.status(500).json({message: error.message});
     }
 }
+
+export { encontrar_Heroes };

@@ -22,6 +22,7 @@ app.use(cors());
 app.use('/', router);
 app.use('/monstruos', router);
 app.use('/celulas', router);
+app.use('/heroes', router)
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

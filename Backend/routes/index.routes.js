@@ -8,6 +8,8 @@ import { guardar_monstruo, get_Monstruos, eliminar_monstruo } from '../controlle
 
 import { get_Celulas, guardar_celula } from '../controllers/celulasController.js';
 
+import { encontrar_Heroes } from '../controllers/heroesController.js';
+
 const router = express.Router();
 
 router.get('/', p_home);
@@ -18,5 +20,7 @@ router.delete('/monstruos/:id_monstruo', eliminar_monstruo);
 
 router.get('/celulas', get_Celulas);
 router.post('/celulas', guardar_celula);
+
+router.get('/heroes', encontrar_Heroes);
 
 export default router;
