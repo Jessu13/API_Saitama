@@ -1,7 +1,13 @@
 import express from "express";
 import router from "./routes/index.routes.js";
+import cors from 'cors';
+import db from "./configuracion/db.js";
 
 const app = express();
+
+db.authenticate()
+    .then(() => console.log('Conexión exitosa a la base de datos'))
+    .catch(err => console.log(err));
 
 // Puerto
 const port = 4000;
@@ -11,7 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
+app.use(cors());
+
 app.use('/', router);
+app.use('/monstruos', router);
+app.use('/celulas', router);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
