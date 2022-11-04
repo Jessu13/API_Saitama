@@ -1,9 +1,9 @@
-const Header = () => {
+const HeaderH = () => {
     return (
       <>
           <header className="py-10 bg-slate-400">
               <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
-                  <h1 className="font-bold text-2xl text-indigo-200">Administrador de Monstruos</h1>
+                  <h1 className="font-bold text-2xl text-indigo-200">Administrador de Heroes</h1>
               </div>
   
           </header>
@@ -11,4 +11,4 @@ const Header = () => {
     )
   }
   
-  export default Header
+  export default HeaderH

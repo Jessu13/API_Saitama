@@ -4,6 +4,7 @@ import Monstruo from "./Monstruo"
 const ListadoMonstruos = () => {
 
   const { monstruos } = useMonstruos()
+  var count = 1
   return (
     <>
       

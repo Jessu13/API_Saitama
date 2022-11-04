@@ -1,9 +1,13 @@
+import { Celula } from "../models/Celula.js";
 import { monstruo } from "../models/Monstruo.js";
+import db from "../configuracion/db.js";
 
 const get_Monstruos = async (req, res) => {
+
+    const [heroes] = await db.query("SELECT monstruos.nombre_monstruo, monstruos.nivel_amenaza, celulas.habilidad, celulas.mutacion FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
+
     try{
-        const monstruos = await monstruo.findAll();
-        res.json(monstruos)
+        res.json(heroes)
     } catch (error) {
         console.log(error);
     }
@@ -11,7 +15,7 @@ const get_Monstruos = async (req, res) => {
 
 const guardar_monstruo = async (req, res) => {
     //Validar
-    const {nombre_monstruo, nivel_amenaza} = req.body;
+    const {nombre_monstruo, nivel_amenaza, mutacion, habilidad} = req.body;
     
 
     if (!nombre_monstruo || !nivel_amenaza){
@@ -27,14 +31,22 @@ const guardar_monstruo = async (req, res) => {
     }
 
     try {
-        
         //Guardar nuevo plato
         const nuevoMonstruo = await monstruo.create({
             nombre_monstruo,
             nivel_amenaza
 
         });
-        res.json(nuevoMonstruo);
+
+        const id_monstruo = nuevoMonstruo.id_monstruo;
+        
+        const nuevaCelula = await Celula.create({
+            id_monstruo,
+            mutacion,
+            habilidad
+        })
+
+        res.json({nuevoMonstruo, nuevaCelula});
         //res.redirect('/platos');
     } catch (error) {
         console.log(error);

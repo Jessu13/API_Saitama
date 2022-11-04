@@ -8,19 +8,24 @@ export const Heroe = db.define('heroes', {
             autoIncrement: true
         },
         nombre_heroe: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         rango:{
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         habilidad: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
-        lugar_residencia: {
-            type: Sequelize.STRING
+        lugar_Residencia: {
+            type: Sequelize.STRING,
+            allowNull: false
         },
         telefono: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         }
     }
 )

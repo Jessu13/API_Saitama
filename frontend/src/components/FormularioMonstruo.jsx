@@ -79,7 +79,28 @@ const FormularioMonstruo = () => {
                     <label htmlFor="nivel_amenaza" className="uppercase text-gray-700 font-bold">
                         Nivel amenaza
                     </label>
-                    <input id="nivel_amenaza" type="text" placeholder="Precio Plato" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"/>
+                    <select name="plataforma" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600">
+                        <option value="" >Escoja un Nivel de Amenaza</option>
+                        <option value="Lobo">Lobo</option>
+                        <option value="Tigre">Tigre</option>
+                        <option value="Ogro">Ogro</option>
+                        <option value="Dragón">Dragón</option>
+                        <option value="Dios">Dios</option>
+                    </select>
+                </div>
+
+                <div className="mb-5">
+                    <label htmlFor="habilidad" className="uppercase text-gray-700 font-bold">
+                        Habilidad
+                    </label>
+                    <input id="habilidad" type="text" placeholder="Habilidad" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"></input>
+                </div>
+
+                <div className="mb-5">
+                    <label htmlFor="mutacion" className="uppercase text-gray-700 font-bold">
+                        Mutación
+                    </label>
+                    <input id="mutacion" type="text" placeholder="Mutación" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"></input>
                 </div>
 
                 <input 

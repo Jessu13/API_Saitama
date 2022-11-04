@@ -2,43 +2,67 @@ import db from "../configuracion/db.js";
 import { Heroe } from "../models/Heroe.js";
 
 //GET
-const encontrar_Heroes = async (req, res) => {
-    try{
-        const heroes_claseS = await Heroe.findAll({
-            where: {
-                rango: "S"
-            }
-        });
-        const heroes_claseA = await Heroe.findAll({
-            where: {
-                rango: "A"
-            }
-        });
-        const heroes_claseB = await Heroe.findAll({
-            where: {
-                rango: "B"
-            }
-        });
-        const heroes_claseC = await Heroe.findAll({
-            where: {
-                rango: "C"
-            }
-        });
-        const heroes = {heroes_claseS, heroes_claseA, heroes_claseB, heroes_claseC}
-        res.json(heroes)
-    } catch (error) {
-        return res.status(500).json({message: error.message});
+const guardar_Heroe = async (req, res) => {
+    const {nombre_heroe, rango,habilidad , lugar_Residencia, telefono} = req.body;
+
+    const existeHeroe = await Heroe.findOne(({ where: { nombre_heroe} }));
+
+    if (existeHeroe){
+        const error = new Error("El heroe que intenta ingresar ya existe");
+        return res.status(400).json({msg: error.message});
     }
-}
-// GET
-const top10Heroes = async (req, res) => {
+    
     try {
-        // COMPLETAR
-        const top10 = await db.query("SELECT * FROM heroes")
-        res.json(top10)
+
+        const nuevoHeroe = await Heroe.create({
+            nombre_heroe,
+            rango,
+            habilidad,
+            lugar_Residencia,
+            telefono
+        });
+        res.json(nuevoHeroe);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//GET Ranking en orden
+const encontrar_Heroes = async (req, res) => {
+
+    const ranks = await Heroe.findAll({
+        where: {
+            rango: "S"
+        }
+    });
+    const ranka = await Heroe.findAll({
+        where: {
+            rango: "A"
+        }
+    });
+    const rankb = await Heroe.findAll({
+        where: {
+            rango: "B"
+        }
+    });
+    const rankc = await Heroe.findAll({
+        where: {
+            rango: "C"
+        }
+    });
+
+    const ranking = ranks.concat(ranka.concat(rankb.concat(rankc)));
+
+    for (let index = 0; index < ranking.length; index++) {
+        ranking[index].dataValues.pos = index + 1;
+    }
+
+    try{
+        res.json(ranking)
     } catch (error) {
         return res.status(500).json({message: error.message});
     }
 }
 
-export { encontrar_Heroes };
+export { encontrar_Heroes, guardar_Heroe };

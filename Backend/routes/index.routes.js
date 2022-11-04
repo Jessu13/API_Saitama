@@ -6,9 +6,7 @@ import {
 
 import { guardar_monstruo, get_Monstruos, eliminar_monstruo } from '../controllers/monstruoControllers.js';
 
-import { get_Celulas, guardar_celula } from '../controllers/celulasController.js';
-
-import { encontrar_Heroes } from '../controllers/heroesController.js';
+import { encontrar_Heroes, guardar_Heroe } from '../controllers/heroesController.js';
 
 const router = express.Router();
 
@@ -18,9 +16,7 @@ router.get('/monstruos', get_Monstruos);
 router.post('/monstruos', guardar_monstruo);
 router.delete('/monstruos/:id_monstruo', eliminar_monstruo);
 
-router.get('/celulas', get_Celulas);
-router.post('/celulas', guardar_celula);
-
 router.get('/heroes', encontrar_Heroes);
+router.post('/heroes', guardar_Heroe)
 
 export default router;
