@@ -4,10 +4,10 @@ import db from "../configuracion/db.js";
 
 const get_Monstruos = async (req, res) => {
 
-    const [heroes] = await db.query("SELECT monstruos.nombre_monstruo, monstruos.nivel_amenaza, celulas.habilidad, celulas.mutacion FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
+    const [monstruos] = await db.query("SELECT monstruos.nombre_monstruo, monstruos.nivel_amenaza, celulas.habilidad, celulas.mutacion FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
 
     try{
-        res.json(heroes)
+        res.json(monstruos)
     } catch (error) {
         console.log(error);
     }
