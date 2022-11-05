@@ -8,6 +8,20 @@ export const MonstruosProvider = ({children}) => {
     const [monstruos, setMonstruos] = useState([])
     //const [monstruo, setMonstruo] = useState({})
 
+    const guardar_Monstruo = async (monstruo) =>{
+        try {
+            const url = "http://localhost:4000/monstruos"
+            const { data } = await axios.post(url, monstruo)
+            /*setAlerta({
+                msg: 'El monstruo ha sido creado con éxito',
+                error: false
+            })*/
+            setMonstruos([data.nuevoMonstruo,data.nuevaCelula, ...monstruos])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         const obtenerMonstruos = async () => {
 
@@ -43,6 +57,7 @@ export const MonstruosProvider = ({children}) => {
     return(
         <MonstruosContext.Provider value={{
             monstruos,
+            guardar_Monstruo,
             eliminarMonstruo
         }}>
             {children}
