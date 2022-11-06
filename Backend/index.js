@@ -24,6 +24,9 @@ app.use('/monstruos', router);
 app.use('/celulas', router);
 app.use('/heroes', router);
 app.use('/patrocinadores', router)
+app.use('/fans', router);
+app.use('/saitamaZone', router);
+app.use('/batallas', router);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
