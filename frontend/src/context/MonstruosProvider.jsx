@@ -16,7 +16,7 @@ export const MonstruosProvider = ({children}) => {
                 msg: 'El monstruo ha sido creado con éxito',
                 error: false
             })*/
-            setMonstruos([data.nuevoMonstruo,data.nuevaCelula, ...monstruos])
+            setMonstruos([data, ...monstruos])
         } catch (error) {
             console.log(error)
         }
@@ -45,9 +45,9 @@ export const MonstruosProvider = ({children}) => {
                 const url = `http://localhost:4000/monstruos/${id}`
                 const { data } = await axios.delete(url)
                 
-                const platosActualizado = platos.filter(platosState => platosState.id !== id)
+                const monstruosActualizado = monstruos.filter(monstruosState => monstruosState.id !== id)
 
-                setMonstruos(platosActualizado)
+                setMonstruos(monstruosActualizado)
             } catch (error) {
                 console.log(error)
             }

@@ -4,7 +4,7 @@ import db from "../configuracion/db.js";
 
 const get_Monstruos = async (req, res) => {
 
-    const [monstruos] = await db.query("SELECT monstruos.nombre_monstruo, monstruos.nivel_amenaza, celulas.habilidad, celulas.mutacion FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
+    const [monstruos] = await db.query("SELECT * FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
 
     try{
         res.json(monstruos)
@@ -46,9 +46,9 @@ const guardar_monstruo = async (req, res) => {
             habilidad
         })
 
-        nuevoMonstruo.id_celula = nuevaCelula.id_celula;
-        nuevoMonstruo.habilidadCelula = nuevaCelula.habilidad;
-        nuevoMonstruo.mutacionCelula = nuevaCelula.mutacion;
+        nuevoMonstruo.dataValues.id_celula = nuevaCelula.dataValues.id_celula;
+        nuevoMonstruo.dataValues.habilidad = nuevaCelula.dataValues.habilidad;
+        nuevoMonstruo.dataValues.mutacion = nuevaCelula.dataValues.mutacion;
 
         res.json(nuevoMonstruo);
         //res.redirect('/platos');
@@ -69,11 +69,19 @@ const eliminar_monstruo = async (req, res) => {
     }
 
     try {
+
+        await Celula.destroy({
+            where:{
+                id_monstruo
+            }
+        });
+
         await monstruo.destroy({
             where:{
-                id_monstruo,
+                id_monstruo
             },
         });
+        
         res.json({msg: 'El monstruo ha sido borrado exitosamente'});
     } catch (error) {
         console.log(error);
