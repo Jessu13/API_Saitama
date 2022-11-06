@@ -1,7 +1,7 @@
-import { Batalla } from "../models/Batalla";
-import { Heroe } from "../models/Heroe";
-import { monstruo } from "../models/Monstruo";
-import db from "../configuracion/db";
+import { Batalla } from "../models/Batalla.js";
+import { Heroe } from "../models/Heroe.js";
+import { monstruo } from "../models/Monstruo.js";
+import db from "../configuracion/db.js";
 
 const get_batallas = async (req, res) => {
     const [batallas, metadata] = await db.query("SELECT batallas.id_batalla, batallas.ganador, " +

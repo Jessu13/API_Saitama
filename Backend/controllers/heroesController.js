@@ -65,4 +65,29 @@ const encontrar_Heroes = async (req, res) => {
     }
 }
 
-export { encontrar_Heroes, guardar_Heroe };
+const eliminar_heroe = async (req, res) => {
+    //Validar
+    const { id } = req.params;
+
+    const her = await Heroe.findByPk(id)
+
+    if(!her){
+        const error = new Error("El Heroe no fue encontrado")
+        return res.status(404).json({msg: error.message});
+    }
+
+    try {
+
+        await Heroe.destroy({
+            where:{
+                id
+            }
+        });
+        
+        res.json({msg: 'El heroe ha sido borrado exitosamente'});
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export { encontrar_Heroes, guardar_Heroe, eliminar_heroe };

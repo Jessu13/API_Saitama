@@ -5,7 +5,7 @@ import db from "../configuracion/db.js";
 
 const get_Patrocinadores = async (req, res) => {
 
-    const [patrocinadores, metadata] = await db.query("SELECT patrocinador.id, patrocinador.nombre_patrocinador, heroes.nombre_heroe from heroes, patrocinador, patrocinador_heroe where patrocinador_heroe.id_heroe=heroes.id and patrocinador_heroe.id_patrocinador=patrocinador.id order by patrocinador.nombre_patrocinador");
+    const [patrocinadores, metadata] = await db.query("SELECT patrocinadores.id, patrocinadores.nombre_patrocinador, heroes.nombre_heroe from heroes, patrocinadores, patrocinador_heroes where patrocinador_heroes.id_heroe=heroes.id and patrocinador_heroes.id_patrocinador=patrocinadores.id order by patrocinadores.nombre_patrocinador");
 
     if(patrocinadores.length > 0){
         var patrocinadores_json = [];

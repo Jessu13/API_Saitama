@@ -1,6 +1,6 @@
-import Comida from '../models/Comida.js';
-import videojuegos from '../models/Videojuegos';
-import Visita_Heroe from '../models/Visita_Heroe.js';
+import { Comida}  from '../models/Comida.js';
+import { videojuegos } from '../models/Videojuegos.js';
+import { Visita_Heroe } from '../models/Visita_Heroe.js';
 import db from "../configuracion/db.js";
 
 const get_SaitamaZone = async (req, res) => {

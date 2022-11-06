@@ -1,8 +1,7 @@
 import { useState } from "react"
-import FormularioHeroe from "../components/FormularioHeroe"
-import ListadoHeroes from "../components/ListadoHeroes"
+import ListadoPatrocinadores from "../components/ListadoPatrocinadores"
 
-const AdministrarHeroes = () => {
+const AdministrarPatrocinadores = () => {
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
 
@@ -13,15 +12,15 @@ const AdministrarHeroes = () => {
             {mostrarFormulario ? 'Ocultar Formulario' : 'Mostrar Formulario'}
           </button>
           <div className={`${mostrarFormulario ? 'block' : 'hidden' } md:block md:2-1/2 lg:w-2/5`}>
-            <FormularioHeroe />
+            
           </div>
 
           <div className="md:2-1/2 lg:w-3/5">
-            <ListadoHeroes />
+            <ListadoPatrocinadores />
           </div>
         </div>
     </>
   )
 }
 
-export default AdministrarHeroes
+export default AdministrarPatrocinadores

@@ -6,7 +6,7 @@ import {
 
 import { guardar_monstruo, get_Monstruos, eliminar_monstruo } from '../controllers/monstruoControllers.js';
 
-import { encontrar_Heroes, guardar_Heroe } from '../controllers/heroesController.js';
+import { encontrar_Heroes, guardar_Heroe, eliminar_heroe } from '../controllers/heroesController.js';
 
 import { get_Patrocinadores, guardar_patrocinador } from '../controllers/patrocinadoresController.js';
 
@@ -26,6 +26,7 @@ router.delete('/monstruos/:id_monstruo', eliminar_monstruo);
 
 router.get('/heroes', encontrar_Heroes);
 router.post('/heroes', guardar_Heroe);
+router.delete('/heroes/:id', eliminar_heroe);
 
 router.get('/patrocinadores', get_Patrocinadores);
 router.post('/patrocinadores', guardar_patrocinador);

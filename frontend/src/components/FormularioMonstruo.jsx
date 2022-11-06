@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import Alerta from "../components/Alerta"
 import useMonstruos from '../hooks/useMonstruos';
 
@@ -26,60 +25,9 @@ const FormularioMonstruo = () => {
             })
         }
 
-        setAlerta({})
         guardar_Monstruo({ nombre_monstruo, nivel_amenaza, habilidad, mutacion })
+        setAlerta({})
     }
-
-    /*const enviarDatos = async (event) => {
-        event.preventDefault()
-
-        //console.log(JSON.stringify({datos}));
-
-        //Descomentar y borrar console.log, poner las restricciones de no null en la base de datos para la tabla platos
-        
-        if ([nombre_plato, precio, descripcion].includes('')){
-
-            setAlerta({msg: 'Hay campos vacios', error:true})
-            return;
-        }
-
-        if (descripcion.length < 6){
-            setAlerta({msg: 'La descripcios es muy corta', error:true})
-            return;
-        }
-
-        if (id){
-            try {
-                const url = `https://apiimplementacion.rj.r.appspot.com/platos/${id}`
-                const { data } = await axios.put(url, {nombre_plato, precio, descripcion})
-            } catch (error) {
-                console.log(error)
-            }
-        }else{
-            try {
-                const url = "https://apiimplementacion.rj.r.appspot.com/platos"
-                const respuesta = await axios.post(url, {nombre_plato, precio, descripcion})
-                setAlerta({
-                    msg: 'Plato Creado correctamente',
-                    error: false
-                })
-            }catch (error) {  
-                setAlerta({
-                    msg: error.response.data.msg,
-                    error: true
-                })
-            }
-        }
-
-        setAlerta({
-            msg: 'Guardado correctamente'
-        });
-
-        setNombre('')
-        setPrecio('')
-        setDescripcion('')
-
-    }*/
 
     const { msg } = alerta
 
