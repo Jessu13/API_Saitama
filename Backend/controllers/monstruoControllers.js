@@ -46,7 +46,11 @@ const guardar_monstruo = async (req, res) => {
             habilidad
         })
 
-        res.json({nuevoMonstruo, nuevaCelula});
+        nuevoMonstruo.id_celula = nuevaCelula.id_celula;
+        nuevoMonstruo.habilidadCelula = nuevaCelula.habilidad;
+        nuevoMonstruo.mutacionCelula = nuevaCelula.mutacion;
+
+        res.json(nuevoMonstruo);
         //res.redirect('/platos');
     } catch (error) {
         console.log(error);
