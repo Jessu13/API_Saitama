@@ -4,7 +4,7 @@ import db from "../configuracion/db.js";
 
 const get_Monstruos = async (req, res) => {
 
-    const [monstruos] = await db.query("SELECT * FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
+    const [monstruos, metadata] = await db.query("SELECT * FROM monstruos INNER JOIN celulas ON monstruos.id_monstruo = celulas.id_monstruo");
 
     try{
         res.json(monstruos)
