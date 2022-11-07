@@ -70,18 +70,21 @@ const get_SZ_Comidas = async (req, res) => {
 };
 
 const get_SZ_Visitas = async (req, res) => {
-    const visitas = await Visita_Heroe.findAll();
+    var visitas = await Visita_Heroe.findAll();
 
     for (let index = 0; index < visitas.length; index++) {
         var cuenta = await Comida.findAll({
         where: {
-            dia: visitas[index].dataValues.fecha_visita,
+            dia: visitas[index].dataValues.dia_visita,
         },
         });
         if (cuenta) {
-        for (let j = 0; j < cuenta.length; j++) {
-            visitas[index].dataValues.cuenta += cuenta[j].dataValues.precio;
-        }
+            var count = 0;
+            for (let j = 0; j < cuenta.length; j++) {
+                count += cuenta[j].dataValues.precio;
+            }
+
+            visitas[index].dataValues.cuenta = count;
         }
     }
 
@@ -199,12 +202,12 @@ const guardar_SZ_Comidas = async (req, res) => {
 };
 
 const guardar_SZ_Visitas = async (req, res) => {
-    const { nombre_heroe, fecha_visita } = req.body;
+    const { nombre_heroe, dia_visita } = req.body;
 
     const existeVisita = await Visita_Heroe.findOne({
         where: {
-        nombre_heroe,
-        fecha_visita,
+            nombre_heroe,
+            dia_visita,
         },
     });
 
@@ -227,21 +230,25 @@ const guardar_SZ_Visitas = async (req, res) => {
     }
 
     try {
-        const visita = await Visita_Heroe.create({
-        nombre_heroe,
-        fecha_visita,
+        var visita = await Visita_Heroe.create({
+            nombre_heroe,
+            dia_visita,
         });
 
         const cuenta = await Comida.findAll({
         where: {
-            dia: visita.dataValues.fecha_visita,
+            dia: visita.dataValues.dia_visita,
         },
         });
 
         if (cuenta) {
-        for (let index = 0; index < cuenta.length; index++) {
-            visita.dataValues.cuenta_visita += cuenta[index].dataValues.precio;
-        }
+            var cuenta_visita = 0;
+            for (let index = 0; index < cuenta.length; index++) {
+                console.log(cuenta[index].dataValues.precio)
+                cuenta_visita += cuenta[index].dataValues.precio;
+            }
+
+            visita.dataValues.cuenta_visita = cuenta_visita;
         }
 
         res.json(visita);
@@ -251,11 +258,11 @@ const guardar_SZ_Visitas = async (req, res) => {
 };
 
 const delete_SZ_Videojuegos = async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const existeVideoJuego = await videojuegos.findOne({
         where: {
-        id,
+        id
         },
     });
 
@@ -277,35 +284,8 @@ const delete_SZ_Videojuegos = async (req, res) => {
     }
     };
 
-    const delete_SZ_partidas = async (req, res) => {
-    const { id } = req.body;
-
-    const existeVideoJuego = await videojuegos.findOne({
-        where: {
-        id,
-        },
-    });
-
-    if (!existeVideoJuego) {
-        return res.status(400).json({
-        msg: "El videojuego no existe",
-        });
-    }
-
-    try {
-        await Partidas.destroy({
-        where: {
-            id,
-        },
-        });
-        res.json({ msg: "Partida eliminada" });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 const delete_SZ_Comidas = async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const existeComida = await Comida.findOne({
         where: {
@@ -332,7 +312,7 @@ const delete_SZ_Comidas = async (req, res) => {
 };
 
 const delete_SZ_Visitas = async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const existeVisita = await Visita_Heroe.findOne({
         where: {
@@ -362,5 +342,5 @@ export {
     get_SaitamaZone,
     get_SZ_Videojuegos, get_SZ_Partidas, get_SZ_Comidas, get_SZ_Visitas,
     guardar_SZ_Videojuegos, guardar_SZ_partidas, guardar_SZ_Comidas, guardar_SZ_Visitas,
-    delete_SZ_Videojuegos, delete_SZ_partidas, delete_SZ_Comidas, delete_SZ_Visitas
+    delete_SZ_Videojuegos, delete_SZ_Comidas, delete_SZ_Visitas
 };

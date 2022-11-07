@@ -2,6 +2,11 @@ import express from "express";
 import router from "./routes/index.routes.js";
 import cors from 'cors';
 import db from "./configuracion/db.js";
+import * as dotenv from 'dotenv'
+
+if(process.env.NODE_ENV != 'production'){
+    dotenv.config();
+}
 
 const app = express();
 
@@ -10,7 +15,7 @@ db.authenticate()
     .catch(err => console.log(err));
 
 // Puerto
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // Leer formato JSON
 app.use(express.urlencoded({ extended: true }));

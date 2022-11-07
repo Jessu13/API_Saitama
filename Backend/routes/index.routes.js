@@ -15,10 +15,10 @@ import { get_Fans, guardar_fans, eliminar_fans } from '../controllers/fansContro
 import {get_batallas, guardar_batallas, eliminar_batallas} from '../controllers/batallasController.js';
 
 import { 
-    /*get_SaitamaZone, 
+    get_SaitamaZone, 
     get_SZ_Videojuegos, get_SZ_Partidas, get_SZ_Comidas, get_SZ_Visitas, 
     guardar_SZ_Videojuegos, guardar_SZ_partidas, guardar_SZ_Comidas, guardar_SZ_Visitas, 
-    delete_SZ_Videojuegos, delete_SZ_partidas, delete_SZ_Comidas, delete_SZ_Visitas */
+    delete_SZ_Videojuegos, delete_SZ_Comidas, delete_SZ_Visitas
 } from '../controllers/saitamaController.js';
 
 const router = express.Router();
@@ -48,8 +48,6 @@ router.get('/patrocinadores', get_Patrocinadores);
 router.post('/patrocinadores', guardar_patrocinador);
 router.delete('/patrocinadores/:id', eliminar_patrocinador);
 
-
-//router.get("/saitamaZone", get_SaitamaZone);
 router.get("/saitamaZone", get_SaitamaZone);
 router.get("/saitamaZone/fav_vj", get_SZ_Videojuegos);
 router.get("/saitamaZone/partidas", get_SZ_Partidas);
@@ -60,7 +58,6 @@ router.post("/saitamaZone/partidas", guardar_SZ_partidas);
 router.post("/saitamaZone/comidas", guardar_SZ_Comidas);
 router.post("/saitamaZone/visitas", guardar_SZ_Visitas);
 router.delete("/saitamaZone/fav_vj/:id", delete_SZ_Videojuegos);
-router.delete("/saitamaZone/partidas/:id", delete_SZ_partidas);
 router.delete("/saitamaZone/comidas/:id", delete_SZ_Comidas);
 router.delete("/saitamaZone/visitas/:id", delete_SZ_Visitas);
 

@@ -2,8 +2,14 @@ import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
 export const videojuegos = db.define('videojuegos', {
-        nombre_videojuego: {
-            type: Sequelize.STRING
-        }
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+
+    nombre_videojuego: {
+        type: Sequelize.STRING
+    }
     }
 )
