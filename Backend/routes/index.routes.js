@@ -14,7 +14,12 @@ import { get_Fans, guardar_fans, eliminar_fans } from '../controllers/fansContro
 
 import {get_batallas, guardar_batallas, eliminar_batallas} from '../controllers/batallasController.js';
 
-import { get_SaitamaZone } from '../controllers/saitamaController.js';
+import { 
+    get_SaitamaZone, 
+    get_SZ_Videojuegos, get_SZ_Partidas, get_SZ_Comidas, get_SZ_Visitas, 
+    guardar_SZ_Videojuegos, guardar_SZ_partidas, guardar_SZ_Comidas, guardar_SZ_Visitas, 
+    delete_SZ_Videojuegos, delete_SZ_partidas, delete_SZ_Comidas, delete_SZ_Visitas 
+} from '../controllers/saitamaController.js';
 
 const router = express.Router();
 
