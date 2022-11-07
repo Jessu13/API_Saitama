@@ -49,5 +49,18 @@ router.post('/patrocinadores', guardar_patrocinador);
 router.delete('/patrocinadores/:id', eliminar_patrocinador);
 
 router.get("/saitamaZone", get_SaitamaZone);
+router.get("/saitamaZone", get_SaitamaZone);
+router.get("/saitamaZone/fav_vj", get_SZ_Videojuegos);
+router.get("/saitamaZone/partidas", get_SZ_Partidas);
+router.get("/saitamaZone/comidas", get_SZ_Comidas);
+router.get("/saitamaZone/visitas", get_SZ_Visitas);
+router.post("/saitamaZone/fav_vj", guardar_SZ_Videojuegos);
+router.post("/saitamaZone/partidas", guardar_SZ_partidas);
+router.post("/saitamaZone/comidas", guardar_SZ_Comidas);
+router.post("/saitamaZone/visitas", guardar_SZ_Visitas);
+router.delete("/saitamaZone/fav_vj/:id", delete_SZ_Videojuegos);
+router.delete("/saitamaZone/partidas/:id", delete_SZ_partidas);
+router.delete("/saitamaZone/comidas/:id", delete_SZ_Comidas);
+router.delete("/saitamaZone/visitas/:id", delete_SZ_Visitas);
 
 export default router;
