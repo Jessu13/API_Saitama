@@ -88,4 +88,35 @@ const guardar_fans = async (req, res) => {
     }
 }
 
-export { get_Fans, guardar_fans };
+const eliminar_fans = async (req, res) => {
+    const { id_fan } = req.params;
+
+    const fan = await Fans.findOne(({ where: { id: id_fan } }));
+
+    if(!fan){
+        const error = new Error("El fan ingresado no existe");
+        return res.status(400).json({msg: error.message});
+    }
+
+    try {
+
+        await Fan_Heroe.destroy({
+            where: {
+                id_fan
+            }
+        });
+
+        await Fans.destroy({
+            where: {
+                id_fan
+            }
+        });
+
+        res.json({msg: "Fan eliminado correctamente"})
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+
+export { get_Fans, guardar_fans, eliminar_fans };

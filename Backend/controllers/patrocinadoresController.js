@@ -56,8 +56,8 @@ const guardar_patrocinador = async (req, res) => {
 
             existePatrocinador = nuevoPatrocinador;
 
-            if(nuevoPatrocinador.dataValues.tipo_patrocinio === "Monstruo"){
-                nuevoPatrocinador.dataValues.monstruo = nombre_heroe;
+            if(nuevoPatrocinador.dataValues.tipo_patrocinio === "patrocinador"){
+                nuevoPatrocinador.dataValues.patrocinador = nombre_heroe;
                 res.json(nuevoPatrocinador);
                 return
             }
@@ -66,8 +66,8 @@ const guardar_patrocinador = async (req, res) => {
         }
     }else{
 
-        if(existePatrocinador.dataValues.tipo_patrocinio === "Monstruo"){
-            existePatrocinador.dataValues.monstruo = nombre_heroe;
+        if(existePatrocinador.dataValues.tipo_patrocinio === "patrocinador"){
+            existePatrocinador.dataValues.patrocinador = nombre_heroe;
             res.json(existePatrocinador);
             return
         }
@@ -95,4 +95,35 @@ const guardar_patrocinador = async (req, res) => {
     }
 }
 
-export { get_Patrocinadores, guardar_patrocinador };
+const eliminar_patrocinador = async (req, res) => {
+    //Validar
+    const { id } = req.params;
+
+    const pat = await patrocinador.findByPk(id)
+
+    if(!pat){
+        const error = new Error("El patrocinador no fue encontrado")
+        return res.status(404).json({msg: error.message});
+    }
+
+    try {
+
+        await Patrocinador_Heroe.destroy({
+            where:{
+                id_patrocinador: id
+            }
+        });
+
+        await patrocinador.destroy({
+            where:{
+                id
+            }
+        });
+        
+        res.json({msg: 'El patrocinador ha sido borrado exitosamente'});
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export { get_Patrocinadores, guardar_patrocinador, eliminar_patrocinador}

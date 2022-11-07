@@ -1,5 +1,7 @@
 import db from "../configuracion/db.js";
 import { Heroe } from "../models/Heroe.js";
+import { Patrocinador_Heroe } from "../models/Patrocinador_heroe.js";
+import { Fan_Heroe } from "../models/Fans_heroe.js";
 
 //GET
 const guardar_Heroe = async (req, res) => {
@@ -77,6 +79,13 @@ const eliminar_heroe = async (req, res) => {
     }
 
     try {
+        await Patrocinador_Heroe.destroy({
+            where: { id_heroe: id }
+        });
+
+        await Fan_Heroe.destroy({
+            where: { id_heroe: id }
+        });
 
         await Heroe.destroy({
             where:{

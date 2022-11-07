@@ -57,4 +57,18 @@ const guardar_batallas = async (req, res) => {
     }
 };
 
-export {get_batallas, guardar_batallas};
+const eliminar_batallas = async (req, res) => {
+    const { id_batalla } = req.params;
+    try {
+        const batallaEliminada = await Batalla.destroy({
+            where: {
+                id_batalla
+            }
+        });
+        res.json({msg: "Batalla eliminada correctamente"});
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export {get_batallas, guardar_batallas, eliminar_batallas };
