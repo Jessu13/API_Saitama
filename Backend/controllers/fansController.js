@@ -1,15 +1,12 @@
 import { Heroe } from "../models/Heroe.js";
 import { Fan_Heroe } from "../models/Fans_heroe.js";
+import { monstruo } from "../models/Monstruo.js";
 import { Fans } from "../models/Fans.js";
 import db from "../configuracion/db.js";
 
 const get_Fans = async (req, res) => {
 
-    const [fans, metadata] = await db.query("SELECT fans.id, " 
-    + "fans.nombre_fan, heroes.nombre_heroe from heroes, "
-    + "fans, fans_heroe where fans_heroe.id_heroe=heroes.id "
-    + "and fans_heroe.id_fans=fans.id order by" 
-    + "fans.nombre_fan");
+    const [fans, metadata] = await db.query("SELECT fans.id, fans.nombre_fan, heroes.nombre_heroe from heroes, fans, fans_heroes where fans_heroes.id_heroe=heroes.id and fans_heroes.id_fan=fans.id order by fans.nombre_fan;");
 
     if(fans.length > 0){
         var fans_json = [];
@@ -20,17 +17,17 @@ const get_Fans = async (req, res) => {
         }
         for (let index = 1; index < fans.length; index++) {
             if(fans[index - 1].nombre_fan === fans[index].nombre_fan){
-                fans.heroes += ", " + fans[index].nombre_heroe;
+                fan.heroes += ", " + fans[index].nombre_heroe;
             } else {
                 fans_json.push(fan);
-                fans = {
+                fan = {
                     id_fan: fans[index].id,
                     nombre_fan: fans[index].nombre_fan,
                     heroes: fans[index].nombre_heroe
                 };
             }
         }
-        fans_json.push(fans);
+        fans_json.push(fan);
     }
 
     try{
@@ -53,9 +50,8 @@ const guardar_fans = async (req, res) => {
 
     if (!existeFan){
         try {
-            const nuevoFan = await fans.create({
-                nombre_fan,
-                tipo_patrocinio
+            const nuevoFan = await Fans.create({
+                nombre_fan
             });
 
             existeFan = nuevoFan;
@@ -70,8 +66,24 @@ const guardar_fans = async (req, res) => {
     }}));
 
     if(!heroe){
-        const error = new Error("El heroe ingresado no existe");
-        return res.status(400).json({msg: error.message});
+
+        const monster = await monstruo.findOne(({ where: {
+            nombre_monstruo: nombre_heroe
+        }}));
+
+        if(!monster){
+            const error = new Error("No se ha encontrado monstruos ni heroes");
+            return res.status(400).json({msg: error.message});
+        }else{
+            existeFan.dataValues.nombre_monstruo = monster.dataValues.nombre_monstruo;
+            try {
+                res.json(existeFan);
+                return
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
     } else {
         try {
             const relacion = await Fan_Heroe.create({

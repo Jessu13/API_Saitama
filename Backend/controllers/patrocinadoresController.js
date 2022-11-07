@@ -56,8 +56,8 @@ const guardar_patrocinador = async (req, res) => {
 
             existePatrocinador = nuevoPatrocinador;
 
-            if(nuevoPatrocinador.dataValues.tipo_patrocinio === "patrocinador"){
-                nuevoPatrocinador.dataValues.patrocinador = nombre_heroe;
+            if(nuevoPatrocinador.dataValues.tipo_patrocinio === "Monstruo"){
+                nuevoPatrocinador.dataValues.nombre_monstruo = nombre_heroe;
                 res.json(nuevoPatrocinador);
                 return
             }
@@ -66,8 +66,13 @@ const guardar_patrocinador = async (req, res) => {
         }
     }else{
 
-        if(existePatrocinador.dataValues.tipo_patrocinio === "patrocinador"){
-            existePatrocinador.dataValues.patrocinador = nombre_heroe;
+        if(existePatrocinador.dataValues.tipo_patrocinio != tipo_patrocinio){
+            const error = new Error("El tipo de patrocinio no concuerda")
+            return res.status(400).json({msg: error.message});
+        }
+
+        if(existePatrocinador.dataValues.tipo_patrocinio === "Monstruo"){
+            existePatrocinador.dataValues.nombre_monstruo = nombre_heroe;
             res.json(existePatrocinador);
             return
         }
