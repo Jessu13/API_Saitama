@@ -131,7 +131,7 @@ const eliminar_fans = async (req, res) => {
 
         await Fans.destroy({
             where: {
-                id_fan
+                id: id_fan
             }
         });
 
