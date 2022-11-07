@@ -85,6 +85,17 @@ const guardar_fans = async (req, res) => {
         }
 
     } else {
+
+        const existeFanHeroe = await Fan_Heroe.findOne(({ where: {
+            id_fan: existeFan.dataValues.id,
+            id_heroe: heroe.dataValues.id
+        }}));
+
+        if(existeFanHeroe){
+            const error = new Error("Ya eres fan de este heroe");
+            return res.status(400).json({msg: error.message});
+        } 
+
         try {
             const relacion = await Fan_Heroe.create({
                 id_fan: existeFan.dataValues.id,

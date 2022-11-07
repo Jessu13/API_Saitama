@@ -86,6 +86,17 @@ const guardar_patrocinador = async (req, res) => {
         const error = new Error("El heroe ingresado no existe");
         return res.status(400).json({msg: error.message});
     }else{
+
+        const existePatroHeroe = await Patrocinador_Heroe.findOne(({ where: {
+            id_fan: existePatrocinador.dataValues.id,
+            id_heroe: heroe.dataValues.id
+        }}));
+
+        if(existePatroHeroe){
+            const error = new Error("Ya eres patrocinador de este heroe");
+            return res.status(400).json({msg: error.message});
+        } 
+
         try {
             const relacion = await Patrocinador_Heroe.create({
                 id_patrocinador: existePatrocinador.dataValues.id,
