@@ -88,7 +88,7 @@ const guardar_patrocinador = async (req, res) => {
     }else{
 
         const existePatroHeroe = await Patrocinador_Heroe.findOne(({ where: {
-            id_fan: existePatrocinador.dataValues.id,
+            id_patrocinador: existePatrocinador.dataValues.id,
             id_heroe: heroe.dataValues.id
         }}));
 
