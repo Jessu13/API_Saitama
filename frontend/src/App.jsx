@@ -3,12 +3,14 @@ import AuthLayout from './layout/AuthLayout'
 import AdminMonstruos from './layout/AdminMonstruos'
 import AdminHeroes from './layout/AdminHeroes'
 import AdminPatrocinadores from './layout/AdminPatrocinadores'
+import AdminSZ from './layout/AdminSaitamaZone'
 
 
 import PaginaPpal from './paginas/PaginaPpal'
 import AdministrarMonstruos from './paginas/AdministrarMonstruos'
 import AdministrarHeroes from './paginas/AdministrarHeroes'
 import AdministrarPatrocinadores from './paginas/AdministrarPatrocinadores'
+import PaginaSZ from './paginas/AdministrarSaitamaZone'
 
 import { MonstruosProvider } from './context/MonstruosProvider'
 import { HeroesProvider } from './context/HeroesProvider'
@@ -36,6 +38,10 @@ function App() {
 
               <Route path='/admin-patrocinadores' element={<AdminPatrocinadores />}>
                   <Route index element={<AdministrarPatrocinadores />}/>
+              </Route>
+
+              <Route path='/admin-saitamaZone' element={<AdminSZ />}>
+                  <Route index element={<PaginaSZ />}/>
               </Route>
             </Routes>
           </PatrocinadoresProvider>

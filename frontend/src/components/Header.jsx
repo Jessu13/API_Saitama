@@ -10,8 +10,12 @@ const Header = () => {
 
                 <nav className="flex gap-4">
 
-                  <Link to="/admin-heroes" className="text-white text-sm uppercase font-bold">Heroes</Link>
-                  <Link to="/admin-patrocinadores" className="text-white text-sm uppercase font-bold">Patrocinadores</Link>
+                        <Link to="/admin-heroes" className="text-white text-sm uppercase font-bold">Heroes</Link>
+                        <Link to="/admin-batallas" className="text-white text-sm uppercase font-bold">Batallas</Link>
+                        <Link to="/admin-patrocinadores" className="text-white text-sm uppercase font-bold">Patrocinadores</Link>
+                        <Link to="/admin-fans" className="text-white text-sm uppercase font-bold">Fans</Link>
+                        <Link to="/admin-saitamaZone" className="text-yellow text-sm uppercase font-bold">Saitama Zone</Link>
+                        <Link to="/" className="text-white text-sm uppercase font-bold">Home</Link>
 
                 </nav>
 

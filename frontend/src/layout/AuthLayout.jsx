@@ -1,11 +1,18 @@
 import { Outlet } from "react-router-dom"
+import HeaderPP from "../components/HeaderPP"
+import FooterPP from "../components/FooterPP"
 
 const AuthLayout = () => {
   return (
     <>
-        <h1 className="font-bold text-center">Desde Auth Layout</h1>
 
-        <Outlet/>
+      <HeaderPP />
+
+        <main className='container mx-auto mt-10'>
+            <Outlet/>
+        </main>
+        
+      <FooterPP/>
     </>
   )
 }
