@@ -1,6 +1,6 @@
 import { Comida } from "../models/Comida.js";
 import { videojuegos } from "../models/Videojuegos.js";
-import { Visita_Heroe } from "../models/Visita_Heroe.js";
+import { Visita_Heroe } from "../models/Visita_heroe.js";
 import { Heroe } from "../models/Heroe.js";
 import { Partidas } from "../models/Partidas.js";
 import db from "../configuracion/db.js";

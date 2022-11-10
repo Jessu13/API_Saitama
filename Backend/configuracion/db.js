@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 
-const db = new Sequelize( 'bd_saitama', 'root', 'root', {
-        host: '127.0.0.1',
+const db = new Sequelize( 'bd_saitama', 'root', 'mi mama me quiere', {
+        host: '104.198.29.146',
         port: '3306',
         dialect: 'mysql', // or 'sqlite', 'postgres', 'mariadb'
         define: {
