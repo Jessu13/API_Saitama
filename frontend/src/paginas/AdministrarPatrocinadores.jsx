@@ -1,5 +1,6 @@
 import { useState } from "react"
 import ListadoPatrocinadores from "../components/ListadoPatrocinadores"
+import FormularioPatrocinador from "../components/FormularioPatrocinador"
 
 const AdministrarPatrocinadores = () => {
 
@@ -12,7 +13,7 @@ const AdministrarPatrocinadores = () => {
             {mostrarFormulario ? 'Ocultar Formulario' : 'Mostrar Formulario'}
           </button>
           <div className={`${mostrarFormulario ? 'block' : 'hidden' } md:block md:2-1/2 lg:w-2/5`}>
-            
+            <FormularioPatrocinador />
           </div>
 
           <div className="md:2-1/2 lg:w-3/5">
