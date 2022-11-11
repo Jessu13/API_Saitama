@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/LogoAH.png"
 
 const Header = () => {
     return (
       <>
           <header className="py-10 bg-slate-400">
               <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
-                  <h1 className="font-bold text-2xl text-indigo-200">Administrador de Monstruos</h1>
+                  <h1 className="font-bold text-2xl text-indigo-200 flex lg:flex-row"><img style={{width: "10%", height:"10%"}} src={logo} alt="Asociacion de Heroes" />Administrador de Monstruos</h1>
               
 
                 <nav className="flex gap-4">
