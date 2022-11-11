@@ -70,7 +70,7 @@ const FormularioPatrocinador = () => {
 
                 <input 
                     type="submit" 
-                    value= 'Agregar Batalla' 
+                    value= 'Agregar Patrocinador' 
                     className="bg-indigo-600 w-full p-3
                     text-white uppercase font-bold
                     hover:bg-indigo-800 cursor-pointer transition-colors"

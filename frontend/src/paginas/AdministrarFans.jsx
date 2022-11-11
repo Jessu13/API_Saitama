@@ -1,5 +1,6 @@
 import { useState } from "react"
 import ListadoFans from "../components/ListadoFans"
+import FormularioFan from "../components/FormularioFan"
 
 const AdministrarFans = () => {
 
@@ -12,7 +13,7 @@ const AdministrarFans = () => {
             {mostrarFormulario ? 'Ocultar Formulario' : 'Mostrar Formulario'}
           </button>
           <div className={`${mostrarFormulario ? 'block' : 'hidden' } md:block md:2-1/2 lg:w-2/5`}>
-            
+            <FormularioFan />
           </div>
 
           <div className="md:2-1/2 lg:w-3/5">

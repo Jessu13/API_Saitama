@@ -3,6 +3,7 @@ import usePatrocinadores from "../hooks/usePatrocinadores"
 const Patrocinador = ({patrocinador}) => {
     
     //const { setEdicion } = useMonstruos()
+    const { eliminarPatrocinador } = usePatrocinadores()
     const { id_patrocinador, nombre_patrocinador, heroes } = patrocinador
 
   return (
@@ -17,6 +18,7 @@ const Patrocinador = ({patrocinador}) => {
             <button
                 type="button"
                 className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white uppercase font-bold rounded-lg"
+                onClick={() => eliminarPatrocinador(id_patrocinador)}
             >
                 Eliminar
             </button>
