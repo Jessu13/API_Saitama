@@ -12,7 +12,7 @@ export const PatrocinadoresProvider = ({children}) => {
         const obtenerPatrocinadores = async () => {
 
             try {
-                const url = "http://localhost:4000/patrocinadores"
+                const url = "https://apiimplementacion.rj.r.appspot.com/patrocinadores"
                 const { data } = await axios(url)
                 setPatrocinadores(data)
 

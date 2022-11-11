@@ -10,7 +10,7 @@ export const MonstruosProvider = ({children}) => {
 
     const guardar_Monstruo = async (monstruo) =>{
         try {
-            const url = "http://localhost:4000/monstruos"
+            const url = "https://apiimplementacion.rj.r.appspot.com/monstruos"
             const { data } = await axios.post(url, monstruo)
             /*setAlerta({
                 msg: 'El monstruo ha sido creado con éxito',
@@ -26,7 +26,7 @@ export const MonstruosProvider = ({children}) => {
         const obtenerMonstruos = async () => {
 
             try {
-                const url = "http://localhost:4000/monstruos"
+                const url = "https://apiimplementacion.rj.r.appspot.com/monstruos"
                 const { data } = await axios(url)
                 setMonstruos(data)
 
@@ -42,7 +42,7 @@ export const MonstruosProvider = ({children}) => {
         
         if(confirmar){
             try {
-                const url = `http://localhost:4000/monstruos/${id}`
+                const url = `https://apiimplementacion.rj.r.appspot.com/monstruos/${id}`
                 const { data } = await axios.delete(url)
                 
                 const monstruosActualizado = monstruos.filter(monstruosState => monstruosState.id !== id)

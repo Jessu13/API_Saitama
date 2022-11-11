@@ -1,48 +1,48 @@
 import { createContext, useState, useEffect} from 'react'
 import axios from 'axios'
 
-const HeroesContext = createContext()
+const BatallasContext = createContext()
 
-export const HeroesProvider = ({children}) => {
+export const BatallasProvider = ({children}) => {
 
-    const [heroes, setHeroes] = useState([])
+    const [batallas, setBatallas] = useState([])
     //const [monstruo, setMonstruo] = useState({})
 
-    const guardar_Heroe = async (heroe) =>{
+    const guardar_Batalla = async (batalla) =>{
         try {
-            const url = "https://apiimplementacion.rj.r.appspot.com/heroes"
-            const { data } = await axios.post(url, heroe)
+            const url = "https://apiimplementacion.rj.r.appspot.com/batallas"
+            const { data } = await axios.post(url, batalla)
             /*setAlerta({
                 msg: 'El monstruo ha sido creado con éxito',
                 error: false
             })*/
-            setHeroes([data, ...heroes])
+            setBatallas([data, ...batallas])
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-        const obtenerHeroes = async () => {
+        const obtenerBatallas = async () => {
 
             try {
-                const url = "https://apiimplementacion.rj.r.appspot.com/heroes"
+                const url = "https://apiimplementacion.rj.r.appspot.com/batallas"
                 const { data } = await axios(url)
-                setHeroes(data)
+                setBatallas(data)
 
             } catch (error) {
                 console.log(error)
             }
             }
-        obtenerHeroes()
+        obtenerBatallas()
     }, [])
 
-    const eliminarHeroe = async id => {
+    const eliminarBatalla = async id => {
         const confirmar = confirm('¿Confirmas que deseas eliminar?')
         
         if(confirmar){
             try {
-                const url = `https://apiimplementacion.rj.r.appspot.com/heroes/${id}`
+                const url = `https://apiimplementacion.rj.r.appspot.com/batallas/${id}`
                 const { data } = await axios.delete(url)
                 
                 //const monstruosActualizado = monstruos.filter(monstruosState => monstruosState.id !== id)
@@ -55,15 +55,15 @@ export const HeroesProvider = ({children}) => {
     }
 
     return(
-        <HeroesContext.Provider value={{
-            heroes,
-            guardar_Heroe,
-            eliminarHeroe
+        <BatallasContext.Provider value={{
+            batallas,
+            guardar_Batalla,
+            eliminarBatalla
         }}>
             {children}
-        </HeroesContext.Provider>
+        </BatallasContext.Provider>
     )
 }
 
 
-export default HeroesContext;
+export default BatallasContext;
